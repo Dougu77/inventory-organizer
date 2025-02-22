@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-from utils.enum import ColumnName
 
 def table() -> pd.DataFrame:
     file = 'Estoque.xlsx'
@@ -13,3 +12,5 @@ def specific_row(table:pd.DataFrame, column_to_filter:str, value:str) -> pd.Seri
 
 def specific_column(table:pd.DataFrame, row:str) -> pd.Series:
     return table[row]
+
+item = specific_row(table(), 'Item', 'A')

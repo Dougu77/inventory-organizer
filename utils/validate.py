@@ -1,6 +1,6 @@
-def choice_number(question:str, max_number:int) -> int:
+def choice_number(max_number:int) -> int:
     while True:
-        number = input(question).strip()
+        number = input('Opção: ').strip()
         try:
             if 1 <= int(number) <= max_number:
                 break
@@ -9,3 +9,12 @@ def choice_number(question:str, max_number:int) -> int:
         except Exception:
             print('Digite um valor numérico.')
     return int(number)
+
+def string_answer(question:str) -> str:
+    while True:
+        answer = input(question).strip()
+        if len(answer) > 0:
+            break
+        else:
+            print('Digite alguma coisa.')
+    return answer
