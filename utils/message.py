@@ -1,7 +1,7 @@
 import pandas as pd
-from utils.enum import ColumnName
 from utils import validate
 from utils import get_data
+from utils import constants
 
 def start() -> None:
     print('-' * 109)
@@ -35,16 +35,16 @@ def read() -> int:
     print()
     return choice
 
-def read_table(table:pd.DataFrame) -> None:
+def read_full_table(table:pd.DataFrame) -> None:
     print(table)
     print()
 
-def read_product(table:pd.DataFrame) -> None:
-    item_name = validate.string_answer('Digite o nome do produto: ')
+def read_specific_rows(table:pd.DataFrame, column:str) -> None:
+    value_name = validate.string_answer(constants.read_question[column])
     print()
-    item_data = get_data.specific_row(table, ColumnName.ITEM.value, item_name)
-    if item_data.empty:
+    value_data = get_data.specific_row(table, column, value_name)
+    if value_data.empty:
         print('A pesquisa não retornou resultados.')
     else:
-        print(item_data)
+        print(value_data)
     print()

@@ -1,5 +1,6 @@
 from utils import get_data
 from utils import message
+from utils.enum import ColumnName
 
 message.start()
 
@@ -16,15 +17,15 @@ while True:
                 
                 # Full table
                 case 1:
-                    message.read_table(stock_df)
+                    message.read_full_table(stock_df)
 
                 # Product
                 case 2:
-                    message.read_product(stock_df)
+                    message.read_specific_rows(stock_df, ColumnName.ITEM.value)
 
                 # Category
                 case 3:
-                    print('Category\n')
+                    message.read_specific_rows(stock_df, ColumnName.CATEGORY.value)
 
                 # Price
                 case 4:
