@@ -6,7 +6,7 @@ def choice_number(max_number:int) -> int:
                 break
             else:
                 print(f'Digite um número entre 1 e {max_number}.')
-        except Exception:
+        except:
             print('Digite um valor numérico.')
     return int(number)
 
@@ -18,3 +18,13 @@ def string_answer(question:str) -> str:
         else:
             print('Digite alguma coisa.')
     return answer
+
+def float_answer(question:str) -> float:
+    while True:
+        answer = input(question).strip()
+        try:
+            if float(answer):
+                break
+        except:
+            print('Digite um valor numérico.')
+    return float(answer)

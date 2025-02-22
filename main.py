@@ -4,9 +4,14 @@ from utils.enum import ColumnName
 
 message.start()
 
+program = True
+
 stock_df = get_data.table()
 
-while True:
+if stock_df.empty:
+    program = False
+
+while program:
     action = message.choice_crud()
     match action:
 
@@ -29,11 +34,11 @@ while True:
 
                 # Price
                 case 4:
-                    print('Price\n')
+                    message.read_specific_rows(stock_df, ColumnName.PRICE.value)
 
                 # Quantity
                 case 5:
-                    print('Quantity\n')
+                    message.read_specific_rows(stock_df, ColumnName.QUANTITY.value)
 
                 # More
                 case 6:
@@ -42,19 +47,21 @@ while True:
                 # Back
                 case 7:
                     print('\n')
+
         # Create
         case 2:
             print('Create\n')
-        
+
         # Update
         case 3:
             print('Update\n')
-        
+
         # Delete
         case 4:
             print('Delete\n')
-        
+
         # Leave
         case 5:
-            input('Digite ENTER para finalizar o programa...')
             break
+
+input('Digite ENTER para finalizar o programa...')

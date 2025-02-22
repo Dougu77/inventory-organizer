@@ -1,4 +1,5 @@
 import pandas as pd
+from utils.enum import ColumnName
 from utils import validate
 from utils import get_data
 from utils import constants
@@ -8,8 +9,11 @@ def start() -> None:
     print(f'{"-" * 50} Estoque {"-" * 50}')
     print('-' * 109)
     print('\n- Esse programa ajuda na organização do estoque da loja.')
-    print('- Visualize os dados como desejar, e edite os dados como quiser.')
+    print('- Visualize e edite os dados como desejar.')
     print('- Digite somente o número da opção que desejar.\n')
+
+def table_not_found() -> None:
+    print('A tabela não foi encontrada.\n')
 
 def choice_crud() -> int:
     print('O que deseja fazer?\n')
@@ -40,9 +44,20 @@ def read_full_table(table:pd.DataFrame) -> None:
     print()
 
 def read_specific_rows(table:pd.DataFrame, column:str) -> None:
-    value_name = validate.string_answer(constants.read_question[column])
+    if column in [ColumnName.PRICE.value, ColumnName.QUANTITY.value]:
+        if column == ColumnName.PRICE.value:
+            min_value = validate.float_answer('Digite o preço mínimo: ')
+            print()
+            max_value = validate.float_answer('Digite o preço máximo: ')
+        else:
+            min_value = validate.float_answer('Digite a quantidade mínima: ')
+            print()
+            max_value = validate.float_answer('Digite a quantidade máxima: ')
+        value_data = get_data.specific_row(table=table, column_to_filter=column, min_value=min_value, max_value=max_value)
+    else:
+        value_name = validate.string_answer(constants.read_question[column])
+        value_data = get_data.specific_row(table=table, column_to_filter=column, value=value_name)
     print()
-    value_data = get_data.specific_row(table, column, value_name)
     if value_data.empty:
         print('A pesquisa não retornou resultados.')
     else:

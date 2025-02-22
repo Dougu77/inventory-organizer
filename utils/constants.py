@@ -1,6 +1,8 @@
+from utils.enum import ColumnName
+
 read_question = {
-    'Item': 'Digite o nome do produto: ',
-    'Categoria': 'Digite o nome da categoria: ',
-    'Preço (R$)': 'Digite o preço: ',
-    'Quantidade': 'Digite a quantidade: '
+    ColumnName.ITEM.value : 'Digite o nome do produto: ',
+    ColumnName.CATEGORY.value : 'Digite o nome da categoria: ',
+    ColumnName.PRICE.value : 'Digite o preço: ',
+    ColumnName.QUANTITY.value : 'Digite a quantidade: '
 }
