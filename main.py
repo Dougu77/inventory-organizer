@@ -10,6 +10,7 @@ stock_df = get_data.table()
 
 if stock_df.empty:
     program = False
+    print('A tabela está vazia.\n')
 
 while program:
     action = message.system.choice_crud()
