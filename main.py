@@ -2,7 +2,7 @@ from utils import get_data
 from utils import message
 from utils.enum import ColumnName
 
-message.start()
+message.system.start()
 
 program = True
 
@@ -12,33 +12,33 @@ if stock_df.empty:
     program = False
 
 while program:
-    action = message.choice_crud()
+    action = message.system.choice_crud()
     match action:
 
         # Read
         case 1:
-            read_action = message.read()
+            read_action = message.read.options()
             match read_action:
                 
                 # Full table
                 case 1:
-                    message.read_full_table(stock_df)
+                    message.read.full_table(stock_df)
 
                 # Product
                 case 2:
-                    message.read_specific_rows(stock_df, ColumnName.ITEM.value)
+                    message.read.specific_rows(stock_df, ColumnName.ITEM.value)
 
                 # Category
                 case 3:
-                    message.read_specific_rows(stock_df, ColumnName.CATEGORY.value)
+                    message.read.specific_rows(stock_df, ColumnName.CATEGORY.value)
 
                 # Price
                 case 4:
-                    message.read_specific_rows(stock_df, ColumnName.PRICE.value)
+                    message.read.specific_rows(stock_df, ColumnName.PRICE.value)
 
                 # Quantity
                 case 5:
-                    message.read_specific_rows(stock_df, ColumnName.QUANTITY.value)
+                    message.read.specific_rows(stock_df, ColumnName.QUANTITY.value)
 
                 # More
                 case 6:
@@ -46,7 +46,7 @@ while program:
 
                 # Back
                 case 7:
-                    print('\n')
+                    print('Voltando...\n')
 
         # Create
         case 2:

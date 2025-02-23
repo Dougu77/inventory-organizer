@@ -9,7 +9,7 @@ def table() -> pd.DataFrame:
     try:
         table = pd.read_excel(path, index_col=False)
     except:
-        message.table_not_found()
+        message.system.table_not_found()
         table = pd.DataFrame()
     return table
 
