@@ -50,7 +50,7 @@ while program:
 
         # Create
         case 2:
-            print('Create\n')
+            message.create.row(stock_df)
 
         # Update
         case 3:
@@ -58,7 +58,32 @@ while program:
 
         # Delete
         case 4:
-            print('Delete\n')
+            delete_action = message.delete.options()
+            match delete_action:
+
+                # Product
+                case 1:
+                    stock_df = message.delete.row_by_item(stock_df)
+
+                # Category
+                case 2:
+                    print('Category\n')
+
+                # Price
+                case 3:
+                    print('Price\n')
+
+                # Quantity
+                case 4:
+                    print('Quantity\n')
+
+                # More
+                case 5:
+                    print('More\n')
+
+                # Back
+                case 6:
+                    print('Voltando...\n')
 
         # Leave
         case 5:
