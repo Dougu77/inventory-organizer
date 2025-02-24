@@ -1,4 +1,6 @@
+import pandas as pd
 from utils import validate
+from utils import get_data
 
 def start() -> None:
     try:
@@ -31,3 +33,16 @@ def choice_crud() -> int:
 
 def error() -> None:
     print('Algo deu errado.\n')
+
+def save_modifications(table:pd.DataFrame) -> None:
+    try:
+        table.to_excel(get_data.excel_path(), index=False)
+        print('O arquivo Excel foi atualizado com sucesso!\n')
+    except:
+        print('O arquivo Excel não foi atualizado.\n')
+
+def close() -> None:
+    try:
+        input('Digite ENTER para finalizar o programa...')
+    except:
+        error()

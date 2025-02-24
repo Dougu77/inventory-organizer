@@ -2,12 +2,15 @@ from utils import message
 import pandas as pd
 import os
 
-def table() -> pd.DataFrame:
+def excel_path() -> str:
     file = 'Estoque.xlsx'
     folder = os.path.dirname(__file__)
     path = os.path.abspath(os.path.join(folder, '..', file))
+    return path
+
+def table() -> pd.DataFrame:
     try:
-        table = pd.read_excel(path, index_col=False)
+        table = pd.read_excel(excel_path(), index_col=False)
     except:
         message.system.table_not_found()
         table = pd.DataFrame()

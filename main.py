@@ -64,15 +64,15 @@ while program:
 
                 # Product
                 case 1:
-                    stock_df = message.delete.row_by_item(stock_df)
+                    stock_df = message.delete.by_item(stock_df)
 
                 # Category
                 case 2:
-                    print('Category\n')
+                    stock_df = message.delete.by_category(stock_df)
 
                 # Price
                 case 3:
-                    print('Price\n')
+                    stock_df = message.delete.by_price(stock_df)
 
                 # Quantity
                 case 4:
@@ -90,4 +90,5 @@ while program:
         case 5:
             break
 
-input('Digite ENTER para finalizar o programa...')
+message.system.save_modifications(stock_df)
+message.system.close()

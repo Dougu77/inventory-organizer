@@ -20,7 +20,7 @@ def options() -> int:
         message.system.error()
         return 6
 
-def row_by_item(table:pd.DataFrame) -> pd.DataFrame:
+def by_item(table:pd.DataFrame) -> pd.DataFrame:
     try:
         while True:
             item = validate.string_answer('Digite o nome do produto: ')
@@ -31,6 +31,42 @@ def row_by_item(table:pd.DataFrame) -> pd.DataFrame:
             else:
                 table = table.drop(table[table[ColumnName.ITEM.value] == item].index)
                 print('Produto deletado com sucesso!\n')
+                break
+        return table
+
+    except:
+        message.system.error()
+
+def by_category(table:pd.DataFrame) -> pd.DataFrame:
+    try:
+        while True:
+            category = validate.string_answer('Digite a categoria: ')
+            print()
+            category_to_delete = get_data.specific_row(table, ColumnName.CATEGORY.value, category)
+            if category_to_delete.empty:
+                print('A categoria não foi deletado. Digite uma categoria válida.\n')
+            else:
+                table = table.drop(table[table[ColumnName.CATEGORY.value] == category].index)
+                print('Categoria deletada com sucesso!\n')
+                break
+        return table
+
+    except:
+        message.system.error()
+
+def by_price(table:pd.DataFrame) -> pd.DataFrame:
+    try:
+        while True:
+            min_value = validate.min_price_value()
+            print()
+            max_value = validate.max_price_value(min_value)
+            print()
+            price_to_delete = get_data.specific_row(table=table, column_to_filter=ColumnName.PRICE.value, min_value=min_value, max_value=max_value)
+            if price_to_delete.empty:
+                print('Os preços não foram deletado. Digite preços válidos.\n')
+            else:
+                table = table.drop(table[table[ColumnName.PRICE.value] >= min_value & table[ColumnName.PRICE.value] <= max_value].index)
+                print('Preços deletados com sucesso!\n')
                 break
         return table
 
