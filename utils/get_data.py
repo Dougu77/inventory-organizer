@@ -1,11 +1,13 @@
 from utils import message
 import pandas as pd
 import os
+import glob
 
 def excel_path() -> str:
-    file = 'Estoque.xlsx'
-    folder = os.path.dirname(__file__)
-    path = os.path.abspath(os.path.join(folder, '..', file))
+    base_folder = os.path.dirname(__file__)
+    excel_folder = os.path.join(base_folder, '../excel')
+    file = glob.glob(os.path.join(excel_folder, '*.xlsx'))[0]
+    path = os.path.abspath(file)
     return path
 
 def table() -> pd.DataFrame:
