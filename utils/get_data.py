@@ -1,4 +1,6 @@
 from utils import message
+from utils import validate
+from utils.enum import ColumnName
 import pandas as pd
 import os
 import glob
@@ -26,3 +28,26 @@ def specific_row(table:pd.DataFrame, column_to_filter:str, value:str='', min_val
 
 def specific_column(table:pd.DataFrame, row:str) -> pd.Series:
     return table[row]
+
+def row_to_update(table:pd.DataFrame) -> pd.Series:
+    while True:
+        item = validate.string_answer('Digite o nome do produto: ')
+        print()
+        item_to_update = specific_row(table, ColumnName.ITEM.value, item)
+        if item_to_update.empty:
+            print('O produto não foi encontrado. Digite um nome válido.\n')
+        else:
+            break
+    return item_to_update
+
+def column_by_choice_number(choice:int) -> str:
+    match choice:
+        case 1:
+            column = ColumnName.ITEM.value
+        case 2:
+            column = ColumnName.CATEGORY.value
+        case 3:
+            column = ColumnName.PRICE.value
+        case 4:
+            column = ColumnName.QUANTITY.value
+    return column

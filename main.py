@@ -55,7 +55,12 @@ while program:
 
         # Update
         case 3:
-            print('Update\n')
+            update_action = message.update.options()
+            match update_action:
+
+                # Product
+                case 1:
+                    message.update.item(stock_df)
 
         # Delete
         case 4:
@@ -76,7 +81,7 @@ while program:
 
                 # Quantity
                 case 4:
-                    print('Quantity\n')
+                    stock_df = message.delete.by_quantity(stock_df)
 
                 # More
                 case 5:

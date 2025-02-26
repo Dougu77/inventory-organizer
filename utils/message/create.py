@@ -8,9 +8,9 @@ def row(table:pd.DataFrame) -> None:
         print()
         category = validate.string_answer('Digite a categoria: ')
         print()
-        price = validate.create_price()
+        price = validate.create_or_update_price()
         print()
-        quantity = validate.create_quantity()
+        quantity = validate.create_or_update_quantity()
         print()
         table.loc[len(table)] = [item, category, price, quantity]
         print('Produto adicionado com sucesso!\n')

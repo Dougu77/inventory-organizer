@@ -20,9 +20,9 @@ def choice_crud() -> int:
     try:
         print('O que deseja fazer?\n')
         print('[ 1 ] Ver dados')
-        print('[ 2 ] Adicionar produto')
-        print('[ 3 ] Modificar produto')
-        print('[ 4 ] Deletar produto')
+        print('[ 2 ] Adicionar')
+        print('[ 3 ] Modificar')
+        print('[ 4 ] Deletar')
         print('[ 5 ] Sair do programa\n')
         choice = validate.choice_number(5)
         print()

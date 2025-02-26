@@ -79,7 +79,7 @@ def max_quantity_value(min_value:int) -> int:
             break
     return value
 
-def create_price() -> float:
+def create_or_update_price() -> float:
     question = 'Digite o preço: '
     while True:
         price = float_answer(question)
@@ -89,7 +89,7 @@ def create_price() -> float:
             break
     return round(price, 2)
 
-def create_quantity() -> int:
+def create_or_update_quantity() -> int:
     question = 'Digite a quantidade: '
     while True:
         quantity = int_answer(question)
